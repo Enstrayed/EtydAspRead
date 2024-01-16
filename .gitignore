@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# got DAMN this file is long, heres the only bit relevant to the application lol
+build/

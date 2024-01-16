@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using StackExchange.Redis;
 using System.Text.Json;
 internal class Program
@@ -16,6 +17,10 @@ internal class Program
 
         ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(globalConfig.redisHost);
         IDatabase db = redis.GetDatabase();
+
+        PosixSignalRegistration.Create(PosixSignal.SIGTERM, context => { // handle SIGTERMs when running in docker
+            Environment.Exit(0);
+        });
 
         app.MapGet("{*url}", (HttpContext context) => {
             var dbResult = db.StringGet(context.Request.Path.ToString());

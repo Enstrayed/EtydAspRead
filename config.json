@@ -1,4 +1,4 @@
 {
     "appPort": 8127,
-    "redisHost": "hazeldale"
+    "redisHost": "redis"
 }
